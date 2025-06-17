@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - Studio de Tatuagem</title>
+    <link rel="stylesheet" href="templatemo-eduwell-style.css">
+    <link rel="stylesheet" href="fontawesome.css">
+     <!-- Bootstrap core CSS -->
+     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+     <!-- Font Awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ 
+     <!-- Additional CSS Files -->
+     <link rel="stylesheet" href="assets/css/templatemo-eduwell-style.css">
+    <style>
+        /* Estilos específicos para a página de agendamento */
+        .booking-section {
+            background-color: #f7f7fb;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .booking-section:before {
+            position: absolute;
+            content: '';
+            background-image: url(../images/testimonials-left-dec.png);
+            left: 0;
+            top: 0;
+            width: 593px;
+            height: 352px;
+            z-index: 1;
+            opacity: 0.1;
+        }
+        
+        .booking-section:after {
+            position: absolute;
+            content: '';
+            background-image: url(../images/testimonials-right-dec.png);
+            right: 0;
+            bottom: 0;
+            width: 632px;
+            height: 352px;
+            z-index: 1;
+            opacity: 0.1;
+        }
+        
+        .booking-container {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
+            padding: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .booking-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .booking-header h2 {
+            font-size: 36px;
+            font-weight: 900;
+            color: #111;
+            margin-bottom: 20px;
+        }
+        
+        .booking-header h2 em {
+            font-style: normal;
+            color: #dc8cdb;
+        }
+        
+        .booking-header p {
+            color: #7a7a7a;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .booking-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .step {
+            text-align: center;
+            width: 150px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: #f4f7fb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: 700;
+            color: #7a7a7a;
+            border: 3px solid #eee;
+            transition: all 0.3s;
+        }
+        
+        .step.active .step-number {
+            background: rgb(219,138,222);
+            background: linear-gradient(-145deg, rgba(219,138,222,1) 0%, rgba(246,191,159,1) 100%);
+            color: #fff;
+            border-color: #dc8cdb;
+        }
+        
+        .step-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #7a7a7a;
+        }
+        
+        .step.active .step-text {
+            color: #111;
+            font-weight: 700;
+        }
+        
+        .step-connector {
+            position: absolute;
+            height: 3px;
+            background-color: #eee;
+            top: 25px;
+            left: 100px;
+            right: 100px;
+            z-index: 1;
+        }
+        
+        .step-connector-progress {
+            position: absolute;
+            height: 3px;
+            background: rgb(219,138,222);
+            background: linear-gradient(90deg, rgba(219,138,222,1) 0%, rgba(246,191,159,1) 100%);
+            top: 0;
+            left: 0;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .booking-form-container {
+            position: relative;
+            min-height: 400px;
+            overflow: hidden;
+        }
+        
+        .form-step {
+            position: absolute;
+            width: 100%;
+            padding: 20px;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.5s;
+            visibility: hidden;
+        }
+        
+        .form-step.active {
+            position: relative;
+            opacity: 1;
+            transform: translateX(0);
+            visibility: visible;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #111;
+        }
+        
+        .form-control {
+            width: 100%;
+            height: 50px;
+            border-radius: 5px;
+            background-color: #f4f7fb;
+            outline: none;
+            border: none;
+            box-shadow: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #7a7a7a;
+            padding: 0px 15px;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            box-shadow: 0 0 0 2px rgba(219,138,222,0.3);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            padding: 15px;
+            resize: vertical;
+        }
+        
+        .artists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .artist-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+        
+        .artist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .artist-card.selected {
+            border-color: #dc8cdb;
+            box-shadow: 0px 0px 0px 5px rgba(219,138,222,0.2);
+        }
+        
+        .artist-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .artist-info {
+            padding: 15px;
+        }
+        
+        .artist-name {
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: #111;
+        }
+        
+        .artist-specialty {
+            font-size: 13px;
+            color: #dc8cdb;
+            font-weight: 600;
+        }
+        
+        .calendar-container {
+            margin-top: 30px;
+        }
+        
+        .month-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .month-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #111;
+        }
+        
+        .nav-month {
+            background-color: #f4f7fb;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #7a7a7a;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .nav-month:hover {
+            background-color: #dc8cdb;
+            color: #fff;
+        }
+        
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 600;
+            color: #7a7a7a;
+        }
+        
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        
+        .day {
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .day:hover {
+            background-color: #f4f7fb;
+        }
+        
+        .day.available {
+            background-color: rgba(219,138,222,0.1);
+            color: #111;
+        }
+        
+        .day.available:hover {
+            background-color: rgba(219,138,222,0.2);
+        }
+        
+        .day.selected {
+            background: rgb(219,138,222);
+            background: linear-gradient(-145deg, rgba(219,138,222,1) 0%, rgba(246,191,159,1) 100%);
+            color: #fff;
+        }
+        
+        .day.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .time-slot {
+            padding: 10px;
+            text-align: center;
+            background-color: #f4f7fb;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .time-slot:hover {
+            background-color: rgba(219,138,222,0.2);
+        }
+        
+        .time-slot.selected {
+            background: rgb(219,138,222);
+            background: linear-gradient(-145deg, rgba(219,138,222,1) 0%, rgba(246,191,159,1) 100%);
+            color: #fff;
+        }
+        
+        .booking-summary {
+            background-color: #f4f7fb;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .summary-label {
+            font-weight: 600;
+            color: #7a7a7a;
+        }
+        
+        .summary-value {
+            font-weight: 700;
+            color: #111;
+        }
+        
+        .summary-total {
+            font-size: 18px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+        
+        .summary-total .summary-value {
+            color: #dc8cdb;
+            font-size: 22px;
+        }
+        
+        .booking-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .btn-prev, .btn-next {
+            font-size: 13px;
+            padding: 12px 30px;
+            display: inline-block;
+            border-radius: 5px;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: all .3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-prev {
+            background-color: #f4f7fb;
+            color: #7a7a7a;
+        }
+        
+        .btn-prev:hover {
+            background-color: #eee;
+        }
+        
+        .btn-next {
+            background: rgb(219,138,222);
+            background: linear-gradient(-145deg, rgba(219,138,222,1) 0%, rgba(246,191,159,1) 100%);
+            color: #fff;
+        }
+        
+        .btn-next:hover {
+            opacity: 0.9;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            background: rgb(219,138,222);
+            background: linear-gradient(-145deg, rgba(219,138,222,1) 0%, rgba(246,191,159,1) 100%);
+            color: #fff;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: all .3s;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+        
+        .btn-submit:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .confirmation-message {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .confirmation-icon {
+            font-size: 80px;
+            color: #dc8cdb;
+            margin-bottom: 30px;
+        }
+        
+        .confirmation-message h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #111;
+        }
+        
+        .confirmation-message p {
+            color: #7a7a7a;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .booking-container {
+                padding: 30px;
+            }
+            
+            .artists-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .booking-header h2 {
+                font-size: 28px;
+            }
+            
+            .step {
+                width: 80px;
+            }
+            
+            .step-text {
+                font-size: 12px;
+            }
+            
+            .booking-navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-prev, .btn-next {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                  <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">
+                            <img src="assets/images/templatemo-eduwell.png" alt="EduWell Template">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                            <li ><a href="artistas.html">Artistas</a></li>
+                            <li class="scroll-to-section"><a href="#courses">Galeria</a></li>
+                            <li class="has-sub">
+                                <a href="javascript:void(0)">Páginas</a>
+                                <ul class="sub-menu">
+                                    <li><a href="about-us.html">Nossa História</a></li>
+                              <li><a href="gallery.html">Galeria</a></li>
+                              <li><a href="blog.html">Blog</a></li>
+                              <li><a href="faq.html">FAQ</a></li>
+                                </ul>
+                            </li>
+                             <li><a href="store.html" class="active">Loja</a></li> 
+                      <li><a href="contact-us.html">Contato</a></li> 
+                      <li><a href="login.html"><i class="fa fa-user"></i></a></li>
+                      <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Booking Section -->
+    <section class="booking-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="booking-container">
+                        <div class="booking-header">
+                            <h2>Agende sua <em>Tatuagem</em></h2>
+                            <p>Preencha o formulário abaixo para agendar sua sessão com nossos artistas especializados.</p>
+                        </div>
+                        
+                        <!-- Progress Steps -->
+                        <div class="booking-steps">
+                            <div class="step-connector">
+                                <div class="step-connector-progress" id="stepProgress"></div>
+                            </div>
+                            <div class="step active" data-step="1">
+                                <div class="step-number">1</div>
+                                <div class="step-text">Escolha do Artista</div>
+                            </div>
+                            <div class="step" data-step="2">
+                                <div class="step-number">2</div>
+                                <div class="step-text">Data e Hora</div>
+                            </div>
+                            <div class="step" data-step="3">
+                                <div class="step-number">3</div>
+                                <div class="step-text">Detalhes</div>
+                            </div>
+                            <div class="step" data-step="4">
+                                <div class="step-number">4</div>
+                                <div class="step-text">Confirmação</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Booking Form -->
+                        <div class="booking-form-container">
+                            <!-- Step 1: Choose Artist -->
+                            <div class="form-step active" id="step1">
+                                <h4>Selecione seu Artista</h4>
+                                <p>Cada artista tem seu estilo único. Escolha aquele que melhor combina com a tatuagem que você deseja.</p>
+                                
+                                <div class="artists-grid">
+                                    <div class="artist-card" data-artist="1">
+                                        <img src="images/artist1.jpg" alt="Artista 1" class="artist-image">
+                                        <div class="artist-info">
+                                            <h5 class="artist-name">Lucas Silva</h5>
+                                            <p class="artist-specialty">Realismo & Retratos</p>
+                                        </div>
+                                    </div>
+                                    <div class="artist-card" data-artist="2">
+                                        <img src="images/artist2.jpg" alt="Artista 2" class="artist-image">
+                                        <div class="artist-info">
+                                            <h5 class="artist-name">Ana Costa</h5>
+                                            <p class="artist-specialty">Aquarela & Fine Line</p>
+                                        </div>
+                                    </div>
+                                    <div class="artist-card" data-artist="3">
+                                        <img src="images/artist3.jpg" alt="Artista 3" class="artist-image">
+                                        <div class="artist-info">
+                                            <h5 class="artist-name">Rafael Souza</h5>
+                                            <p class="artist-specialty">Tribal & Maori</p>
+                                        </div>
+                                    </div>
+                                    <div class="artist-card" data-artist="4">
+                                        <img src="images/artist4.jpg" alt="Artista 4" class="artist-image">
+                                        <div class="artist-info">
+                                            <h5 class="artist-name">Juliana Lima</h5>
+                                            <p class="artist-specialty">Old School & Neo Trad</p>
+                                        </div>
+                                    </div>
+                                    <div class="artist-card" data-artist="5">
+                                        <img src="images/artist5.jpg" alt="Artista 5" class="artist-image">
+                                        <div class="artist-info">
+                                            <h5 class="artist-name">Marcos Oliveira</h5>
+                                            <p class="artist-specialty">Black & Grey</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="booking-navigation">
+                                    <button class="btn-prev" disabled>Voltar</button>
+                                    <button class="btn-next" id="nextStep1">Próximo</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 2: Date & Time -->
+                            <div class="form-step" id="step2">
+                                <h4>Escolha a Data e Hora</h4>
+                                <p>Selecione um dia disponível no calendário e depois escolha o horário que melhor se encaixa na sua agenda.</p>
+                                
+                                <div class="calendar-container">
+                                    <div class="month-header">
+                                        <button class="nav-month" id="prevMonth"><i class="fa fa-chevron-left"></i></button>
+                                        <h5 class="month-title" id="currentMonth">Junho 2023</h5>
+                                        <button class="nav-month" id="nextMonth"><i class="fa fa-chevron-right"></i></button>
+                                    </div>
+                                    
+                                    <div class="weekdays">
+                                        <div>Dom</div>
+                                        <div>Seg</div>
+                                        <div>Ter</div>
+                                        <div>Qua</div>
+                                        <div>Qui</div>
+                                        <div>Sex</div>
+                                        <div>Sáb</div>
+                                    </div>
+                                    
+                                    <div class="days-grid" id="calendarDays">
+                                        <!-- Days will be populated by JavaScript -->
+                                    </div>
+                                </div>
+                                
+                                <div class="time-slots" id="timeSlotsContainer">
+                                    <!-- Time slots will be populated by JavaScript -->
+                                </div>
+                                
+                                <div class="booking-navigation">
+                                    <button class="btn-prev" id="prevStep2">Voltar</button>
+                                    <button class="btn-next" id="nextStep2">Próximo</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 3: Details -->
+                            <div class="form-step" id="step3">
+                                <h4>Detalhes da Tatuagem</h4>
+                                <p>Forneça informações sobre a tatuagem que você deseja para que possamos preparar tudo para sua sessão.</p>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tattooType">Tipo de Tatuagem</label>
+                                            <select class="form-control" id="tattooType">
+                                                <option value="">Selecione...</option>
+                                                <option value="colorida">Colorida</option>
+                                                <option value="black-grey">Black & Grey</option>
+                                                <option value="minimalista">Minimalista</option>
+                                                <option value="geometrica">Geométrica</option>
+                                                <option value="realista">Realista</option>
+                                                <option value="aquarela">Aquarela</option>
+                                                <option value="old-school">Old School</option>
+                                                <option value="other">Outro</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tattooSize">Tamanho Aproximado (cm)</label>
+                                            <select class="form-control" id="tattooSize">
+                                                <option value="">Selecione...</option>
+                                                <option value="small">Até 10cm</option>
+                                                <option value="medium">10-20cm</option>
+                                                <option value="large">20-30cm</option>
+                                                <option value="xlarge">30cm+</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="tattooPlacement">Localização no Corpo</label>
+                                    <input type="text" class="form-control" id="tattooPlacement" placeholder="Ex: Braço direito, costas, tornozelo...">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="tattooDescription">Descrição da Tatuagem</label>
+                                    <textarea class="form-control" id="tattooDescription" placeholder="Descreva em detalhes o que você deseja, incluindo elementos, estilo, cores preferidas, etc."></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="referenceImage">Imagem de Referência (opcional)</label>
+                                    <input type="file" class="form-control" id="referenceImage">
+                                    <small class="text-muted">Você pode enviar até 3 imagens de referência (máx. 5MB cada)</small>
+                                </div>
+                                
+                                <div class="booking-summary">
+                                    <h5>Resumo do Agendamento</h5>
+                                    <div class="summary-item">
+                                        <span class="summary-label">Artista:</span>
+                                        <span class="summary-value" id="summaryArtist">-</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span class="summary-label">Data:</span>
+                                        <span class="summary-value" id="summaryDate">-</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span class="summary-label">Horário:</span>
+                                        <span class="summary-value" id="summaryTime">-</span>
+                                    </div>
+                                    <div class="summary-item summary-total">
+                                        <span class="summary-label">Valor Estimado:</span>
+                                        <span class="summary-value" id="summaryPrice">R$ -</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="booking-navigation">
+                                    <button class="btn-prev" id="prevStep3">Voltar</button>
+                                    <button class="btn-next" id="nextStep3">Próximo</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 4: Confirmation -->
+                            <div class="form-step" id="step4">
+                                <div class="confirmation-message">
+                                    <div class="confirmation-icon">
+                                        <i class="fa fa-check-circle"></i>
+                                    </div>
+                                    <h3>Confirme seu Agendamento</h3>
+                                    <p>Por favor, revise todas as informações abaixo antes de confirmar seu agendamento. Um e-mail de confirmação será enviado para você.</p>
+                                    
+                                    <div class="booking-summary">
+                                        <div class="summary-item">
+                                            <span class="summary-label">Artista:</span>
+                                            <span class="summary-value" id="confirmArtist">-</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span class="summary-label">Data:</span>
+                                            <span class="summary-value" id="confirmDate">-</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span class="summary-label">Horário:</span>
+                                            <span class="summary-value" id="confirmTime">-</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span class="summary-label">Tipo:</span>
+                                            <span class="summary-value" id="confirmType">-</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span class="summary-label">Tamanho:</span>
+                                            <span class="summary-value" id="confirmSize">-</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span class="summary-label">Localização:</span>
+                                            <span class="summary-value" id="confirmPlacement">-</span>
+                                        </div>
+                                        <div class="summary-item summary-total">
+                                            <span class="summary-label">Valor Estimado:</span>
+                                            <span class="summary-value" id="confirmPrice">R$ -</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="clientName">Seu Nome Completo</label>
+                                        <input type="text" class="form-control" id="clientName" placeholder="Nome completo">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="clientEmail">E-mail</label>
+                                        <input type="email" class="form-control" id="clientEmail" placeholder="Seu melhor e-mail">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="clientPhone">Telefone</label>
+                                        <input type="tel" class="form-control" id="clientPhone" placeholder="(00) 00000-0000">
+                                    </div>
+                                    
+                                    <button class="btn-submit" id="confirmBooking">Confirmar Agendamento</button>
+                                    
+                                    <div class="booking-navigation">
+                                        <button class="btn-prev" id="prevStep4">Voltar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 5: Success -->
+                            <div class="form-step" id="step5">
+                                <div class="confirmation-message">
+                                    <div class="confirmation-icon">
+                                        <i class="fa fa-calendar-check-o"></i>
+                                    </div>
+                                    <h3>Agendamento Confirmado!</h3>
+                                    <p>Seu agendamento foi confirmado com sucesso. Você receberá um e-mail com todos os detalhes e instruções para preparação. Caso precise alterar ou cancelar, entre em contato conosco com pelo menos 48 horas de antecedência.</p>
+                                    
+                                    <div class="booking-summary">
+                                        <div class="summary-item">
+                                            <span class="summary-label">Número do Agendamento:</span>
+                                            <span class="summary-value">#TAT20230001</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span class="summary-label">Artista:</span>
+                                            <span class="summary-value" id="successArtist">-</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span class="summary-label">Data:</span>
+                                            <span class="summary-value" id="successDate">-</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span class="summary-label">Horário:</span>
+                                            <span class="summary-value" id="successTime">-</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <a href="index.html" class="main-button-gradient">Voltar para a Página Inicial</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright">Copyright &copy; 2023 InkStudio. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Step Navigation
+            let currentStep = 1;
+            const totalSteps = 4;
+            
+            // Artist Selection
+            const artistCards = document.querySelectorAll('.artist-card');
+            let selectedArtist = null;
+            
+            artistCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    artistCards.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedArtist = {
+                        id: this.getAttribute('data-artist'),
+                        name: this.querySelector('.artist-name').textContent,
+                        specialty: this.querySelector('.artist-specialty').textContent
+                    };
+                    
+                    // Update summary
+                    document.getElementById('summaryArtist').textContent = selectedArtist.name;
+                    document.getElementById('confirmArtist').textContent = selectedArtist.name;
+                    document.getElementById('successArtist').textContent = selectedArtist.name;
+                    
+                    // Estimate price based on artist
+                    updatePriceEstimate();
+                });
+            });
+            
+            // Calendar
+            let currentDate = new Date();
+            let selectedDate = null;
+            let selectedTime = null;
+            
+            function renderCalendar() {
+                const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+                document.getElementById('currentMonth').textContent = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+                
+                const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+                const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+                const daysInMonth = lastDay.getDate();
+                const startingDay = firstDay.getDay();
+                
+                const calendarDays = document.getElementById('calendarDays');
+                calendarDays.innerHTML = '';
+                
+                // Add empty cells for days before the first day of the month
+                for (let i = 0; i < startingDay; i++) {
+                    const emptyDay = document.createElement('div');
+                    emptyDay.classList.add('day', 'disabled');
+                    calendarDays.appendChild(emptyDay);
+                }
+                
+                // Add days of the month
+                for (let i = 1; i <= daysInMonth; i++) {
+                    const day = document.createElement('div');
+                    day.classList.add('day');
+                    day.textContent = i;
+                    
+                    // Mark available days (random for demo)
+                    const isAvailable = Math.random() > 0.3;
+                    if (isAvailable) {
+                        day.classList.add('available');
+                        
+                        day.addEventListener('click', function() {
+                            document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+                            this.classList.add('selected');
+                            selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
+                            
+                            // Update summary
+                            const formattedDate = selectedDate.toLocaleDateString('pt-BR', { 
+                                weekday: 'long', 
+                                day: 'numeric', 
+                                month: 'long' 
+                            });
+                            document.getElementById('summaryDate').textContent = formattedDate;
+                            document.getElementById('confirmDate').textContent = formattedDate;
+                            document.getElementById('successDate').textContent = formattedDate;
+                            
+                            // Generate time slots
+                            generateTimeSlots();
+                        });
+                    } else {
+                        day.classList.add('disabled');
+                    }
+                    
+                    calendarDays.appendChild(day);
+                }
+            }
+            
+            function generateTimeSlots() {
+                const timeSlotsContainer = document.getElementById('timeSlotsContainer');
+                timeSlotsContainer.innerHTML = '';
+                
+                // Generate random available times for demo
+                const availableTimes = [];
+                const startHour = 10;
+                const endHour = 18;
+                
+                for (let hour = startHour; hour < endHour; hour++) {
+                    // 50% chance of being available
+                    if (Math.random() > 0.5) {
+                        availableTimes.push(`${hour}:00`);
+                        if (Math.random() > 0.7) {
+                            availableTimes.push(`${hour}:30`);
+                        }
+                    }
+                }
+                
+                availableTimes.forEach(time => {
+                    const timeSlot = document.createElement('div');
+                    timeSlot.classList.add('time-slot');
+                    timeSlot.textContent = time;
+                    
+                    timeSlot.addEventListener('click', function() {
+                        document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
+                        this.classList.add('selected');
+                        selectedTime = this.textContent;
+                        
+                        // Update summary
+                        document.getElementById('summaryTime').textContent = selectedTime;
+                        document.getElementById('confirmTime').textContent = selectedTime;
+                        document.getElementById('successTime').textContent = selectedTime;
+                        
+                        // Update price estimate
+                        updatePriceEstimate();
+                    });
+                    
+                    timeSlotsContainer.appendChild(timeSlot);
+                });
+            }
+            
+            // Month navigation
+            document.getElementById('prevMonth').addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar();
+            });
+            
+            document.getElementById('nextMonth').addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar();
+            });
+            
+            // Form navigation
+            function goToStep(step) {
+                document.querySelectorAll('.form-step').forEach(s => {
+                    s.classList.remove('active');
+                });
+                
+                document.querySelector(`#step${step}`).classList.add('active');
+                
+                // Update progress steps
+                document.querySelectorAll('.step').forEach(s => {
+                    s.classList.remove('active');
+                });
+                
+                for (let i = 1; i <= step; i++) {
+                    document.querySelector(`.step[data-step="${i}"]`).classList.add('active');
+                }
+                
+                  // Update progress bar
+            const progressPercentage = ((step - 1) / (totalSteps - 1)) * 100;
+            document.getElementById('stepProgress').style.width = `${progressPercentage}%`;
+            
+            currentStep = step;
+        }
+        
+        // Price estimation
+        function updatePriceEstimate() {
+            if (!selectedArtist || !selectedDate || !selectedTime) return;
+            
+            const sizeSelect = document.getElementById('tattooSize');
+            const size = sizeSelect ? sizeSelect.value : '';
+            let price = 0;
+            
+            // Base price based on artist (demo values)
+            switch(selectedArtist.id) {
+                case '1': price = 300; break; // Lucas
+                case '2': price = 250; break; // Ana
+                case '3': price = 350; break; // Rafael
+                case '4': price = 200; break; // Juliana
+                case '5': price = 400; break; // Marcos
+                default: price = 300;
+            }
+            
+            // Size multiplier
+            switch(size) {
+                case 'small': price *= 1; break;
+                case 'medium': price *= 1.5; break;
+                case 'large': price *= 2.5; break;
+                case 'xlarge': price *= 4; break;
+                default: price *= 1.2;
+            }
+            
+            // Update all price displays
+            document.getElementById('summaryPrice').textContent = `R$ ${price.toFixed(2)}`;
+            document.getElementById('confirmPrice').textContent = `R$ ${price.toFixed(2)}`;
+        }
+        
+        // Form navigation handlers
+        document.getElementById('nextStep1').addEventListener('click', function() {
+            if (!selectedArtist) {
+                alert('Por favor, selecione um artista antes de continuar.');
+                return;
+            }
+            goToStep(2);
+        });
+        
+        document.getElementById('nextStep2').addEventListener('click', function() {
+            if (!selectedDate || !selectedTime) {
+                alert('Por favor, selecione uma data e horário antes de continuar.');
+                return;
+            }
+            goToStep(3);
+        });
+        
+        document.getElementById('nextStep3').addEventListener('click', function() {
+            // Update confirmation details
+            const typeSelect = document.getElementById('tattooType');
+            const sizeSelect = document.getElementById('tattooSize');
+            const placement = document.getElementById('tattooPlacement');
+            
+            document.getElementById('confirmType').textContent = typeSelect ? typeSelect.value || '-' : '-';
+            document.getElementById('confirmSize').textContent = sizeSelect ? sizeSelect.options[sizeSelect.selectedIndex].text || '-' : '-';
+            document.getElementById('confirmPlacement').textContent = placement ? placement.value || '-' : '-';
+            
+            goToStep(4);
+        });
+        
+        document.getElementById('prevStep2').addEventListener('click', function() {
+            goToStep(1);
+        });
+        
+        document.getElementById('prevStep3').addEventListener('click', function() {
+            goToStep(2);
+        });
+        
+        document.getElementById('prevStep4').addEventListener('click', function() {
+            goToStep(3);
+        });
+        
+        // Final booking confirmation
+        document.getElementById('confirmBooking').addEventListener('click', function() {
+            const name = document.getElementById('clientName').value;
+            const email = document.getElementById('clientEmail').value;
+            const phone = document.getElementById('clientPhone').value;
+            
+            if (!name || !email || !phone) {
+                alert('Por favor, preencha todos os campos de contato antes de confirmar.');
+                return;
+            }
+            
+            // In a real app, you would send this data to a server here
+            // For demo, we just show the success step
+            goToStep(5);
+        });
+        
+        // Initialize calendar
+        renderCalendar();
+        
+        // Update price when size changes
+        const sizeSelect = document.getElementById('tattooSize');
+        if (sizeSelect) {
+            sizeSelect.addEventListener('change', updatePriceEstimate);
+        }
+    });
+</script>
+</body>
+</html>

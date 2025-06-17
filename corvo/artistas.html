@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artistas - Ink Studio Tattoo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/artistas.css">
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Ink<span>Studio</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#" class="active">Artistas</a></li>
+                    <li><a href="#">Portfólio</a></li>
+                    <li><a href="#">Agendamento</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Nossos Artistas</h2>
+            <p>Cada tatuagem conta uma história, cada artista é um contador único</p>
+            <div class="banner-counter" id="tattooCounter">0</div>
+            <p>Tatuagens realizadas e contando...</p>
+        </div>
+    </section>
+
+    <section class="artists">
+        <div class="container">
+            <div class="section-title">
+                <h3>Mestres da Pele</h3>
+                <p>Conheça os talentos por trás das agulhas</p>
+            </div>
+
+            <div class="artist-grid" id="artistContainer">
+                <!-- Exemplo de card de artista - será preenchido via JS ou backend -->
+                <div class="artist-card" data-artist-id="1">
+                    <img src="https://source.unsplash.com/random/300x300/?tattoo-artist" alt="Artista 1">
+                    <h4>Marcos Silva</h4>
+                    <p>Especialista em Realismo</p>
+                    <button class="btn artist-detail" data-artist="1" >Ver Portfólio</button>
+                </div>
+                <div class="artist-card" data-artist-id="2">
+                    <img src="https://source.unsplash.com/random/300x300/?tattoo-artist-woman" alt="Artista 2">
+                    <h4>Ana Costa</h4>
+                    <p>Especialista em Aquarela</p>
+                    <button class="btn artist-detail" data-artist="2">Ver Portfólio</button>
+                </div>
+                <div class="artist-card" data-artist-id="3">
+                    <img src="https://source.unsplash.com/random/300x300/?tattoo-artist-man" alt="Artista 3">
+                    <h4>Ricardo Oliveira</h4>
+                    <p>Especialista em Old School</p>
+                    <button class="btn artist-detail" data-artist="3">Ver Portfólio</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de estilos com galeria -->
+    <section class="styles">
+        <div class="container">
+            <div class="section-title">
+                <h3>Estilos Dominados</h3>
+                <p>Variedade artística para atender sua visão</p>
+            </div>
+            <div class="style-tags">
+                <span class="active" data-filter="all">Todos</span>
+                <span data-filter="realismo">Realismo</span>
+                <span data-filter="aquarela">Aquarela</span>
+                <span data-filter="oldschool">Old School</span>
+                <span data-filter="minimalista">Minimalista</span>
+                <span data-filter="geometrico">Geométrico</span>
+                <span data-filter="blackwork">Blackwork</span>
+                <span data-filter="tribal">Tribal</span>
+                <span data-filter="pontilhismo">Pontilhismo</span>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item" data-category="realismo">
+                    <img src="https://source.unsplash.com/random/600x600/?realistic+tattoo" alt="Tatuagem Realista">
+                    <div class="style-label">Realismo</div>
+                </div>
+                <div class="gallery-item" data-category="aquarela">
+                    <img src="https://source.unsplash.com/random/600x600/?watercolor+tattoo" alt="Tatuagem Aquarela">
+                    <div class="style-label">Aquarela</div>
+                </div>
+                <div class="gallery-item" data-category="oldschool">
+                    <img src="https://source.unsplash.com/random/600x600/?old+school+tattoo" alt="Tatuagem Old School">
+                    <div class="style-label">Old School</div>
+                </div>
+                <div class="gallery-item" data-category="minimalista">
+                    <img src="https://source.unsplash.com/random/600x600/?minimalist+tattoo" alt="Tatuagem Minimalista">
+                    <div class="style-label">Minimalista</div>
+                </div>
+                <div class="gallery-item" data-category="geometrico">
+                    <img src="https://source.unsplash.com/random/600x600/?geometric+tattoo" alt="Tatuagem Geométrica">
+                    <div class="style-label">Geométrico</div>
+                </div>
+                <div class="gallery-item" data-category="blackwork">
+                    <img src="https://source.unsplash.com/random/600x600/?blackwork+tattoo" alt="Tatuagem Blackwork">
+                    <div class="style-label">Blackwork</div>
+                </div>
+                <div class="gallery-item" data-category="tribal">
+                    <img src="https://source.unsplash.com/random/600x600/?tribal+tattoo" alt="Tatuagem Tribal">
+                    <div class="style-label">Tribal</div>
+                </div>
+                <div class="gallery-item" data-category="pontilhismo">
+                    <img src="https://source.unsplash.com/random/600x600/?dotwork+tattoo" alt="Tatuagem Pontilhismo">
+                    <div class="style-label">Pontilhismo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Interativo -->
+    <section class="quiz-section">
+        <div class="container">
+            <div class="quiz-container">
+                <h3>Qual estilo de tatuagem combina com você?</h3>
+                <p>Responda nosso quiz e descubra qual estilo se encaixa melhor no seu perfil!</p>
+                
+                <div class="quiz-question" id="question1">
+                    <p>1. Qual dessas palavras melhor descreve seu estilo pessoal?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="oldschool">Clássico</div>
+                        <div class="quiz-option" data-value="minimalista">Simples</div>
+                        <div class="quiz-option" data-value="aquarela">Colorido</div>
+                        <div class="quiz-option" data-value="geometrico">Moderno</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question" id="question2" style="display:none;">
+                    <p>2. Qual o tamanho da tatuagem que você está pensando em fazer?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="minimalista">Pequena e discreta</div>
+                        <div class="quiz-option" data-value="oldschool">Média, com detalhes</div>
+                        <div class="quiz-option" data-value="realismo">Grande e detalhada</div>
+                        <div class="quiz-option" data-value="blackwork">Não me importo com o tamanho</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question" id="question3" style="display:none;">
+                    <p>3. Que tipo de arte você mais gosta?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="realismo">Fotos realistas</div>
+                        <div class="quiz-option" data-value="aquarela">Pinturas abstratas</div>
+                        <div class="quiz-option" data-value="geometrico">Designs geométricos</div>
+                        <div class="quiz-option" data-value="tribal">Arte étnica/tribal</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-result" id="quizResult">
+                    <h4>Seu estilo ideal é: <span class="style-match" id="resultStyle"></span></h4>
+                    <p id="resultDescription"></p>
+                    <div class="artist-match" id="artistSuggestion"></div>
+                    <button class="btn" id="restartQuiz">Fazer novamente</button>
+                </div>
+                
+                <button class="btn" id="nextQuestion" style="display:none;">Próxima pergunta</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos interativos -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h3>O que nossos clientes dizem</h3>
+                <p>Experiências reais de quem já passou pelo nosso estúdio</p>
+            </div>
+            
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"A Ana fez uma tatuagem aquarela incrível no meu braço. Superou todas as minhas expectativas!"</p>
+                    <p><strong>- Juliana M.</strong></p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"O Marcos é um artista incrível no realismo. Minha tatuagem parece uma foto!"</p>
+                    <p><strong>- Rodrigo P.</strong></p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"Adorei a experiência no estúdio. Ambiente limpo e profissionais qualificados."</p>
+                    <p><strong>- Carla S.</strong></p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Fiz meu sleeve com o Ricardo e o resultado ficou espetacular. Recomendo demais!"</p>
+                    <p><strong>- Fernando R.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner interativo -->
+    <section class="interactive-banner">
+        <div class="container">
+            <h3>Pronto para transformar sua ideia em arte?</h3>
+            <p>Nossos artistas estão prontos para criar a tatuagem dos seus sonhos</p>
+            <div class="banner-counter" id="artistsAvailable">5</div>
+            <p>Artistas disponíveis hoje</p>
+            <a href="#" class="btn">Agendar Consulta</a>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h3>Pronto para sua próxima tatuagem?</h3>
+            <p>Agende uma consulta com um de nossos artistas</p>
+            <a href="#" class="btn">Agendar Consulta</a>
+        </div>
+    </section>
+
+    <!-- Modal de artista -->
+    <div class="artist-modal" id="artistModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalContent">
+                <!-- Conteúdo será preenchido via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Flutuante -->
+    <div class="floating-cta" id="floatingCta">
+        <i class="fas fa-calendar-alt"></i>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h3 class="logo">Ink<span>Studio</span></h3>
+                    <p>Um estúdio de tatuagem dedicado à arte e autoexpressão, com os melhores artistas e padrões de higiene.</p>
+                    <div class="socials">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Artistas</a></li>
+                        <li><a href="#">Portfólio</a></li>
+                        <li><a href="#">Agendamento</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua da Tatuagem, 123 - Centro</p>
+                    <p><i class="fas fa-phone"></i> (11) 98765-4321</p>
+                    <p><i class="fas fa-envelope"></i> contato@inkstudio.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Ink Studio Tattoo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/artistas.js"></script>
+    <script>
+        // Filtros da galeria
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.style-tags span');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Animação do contador
+            function animateCounter(element, target, duration = 2000) {
+                const start = 0;
+                const increment = target / (duration / 16);
+                let current = start;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        current = target;
+                    }
+                    element.textContent = Math.floor(current);
+                }, 16);
+            }
+            
+            // Contador de tatuagens realizadas
+            animateCounter(document.getElementById('tattooCounter'), 1243);
+            
+            // Contador de artistas disponíveis (aleatório entre 3 e 6)
+            const artistsAvailable = Math.floor(Math.random() * 4) + 3;
+            animateCounter(document.getElementById('artistsAvailable'), artistsAvailable);
+            
+            // Quiz interativo
+            const quizOptions = document.querySelectorAll('.quiz-option');
+            const nextQuestionBtn = document.getElementById('nextQuestion');
+            const quizResult = document.getElementById('quizResult');
+            const restartQuizBtn = document.getElementById('restartQuiz');
+            let currentQuestion = 1;
+            let userAnswers = [];
+            
+            quizOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    quizOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    nextQuestionBtn.style.display = 'inline-block';
+                });
+            });
+            
+            nextQuestionBtn.addEventListener('click', function() {
+                const selectedOption = document.querySelector(`#question${currentQuestion} .quiz-option.selected`);
+                if (selectedOption) {
+                    userAnswers.push(selectedOption.getAttribute('data-value'));
+                    
+                    document.getElementById(`question${currentQuestion}`).style.display = 'none';
+                    currentQuestion++;
+                    
+                    if (currentQuestion <= 3) {
+                        document.getElementById(`question${currentQuestion}`).style.display = 'block';
+                        nextQuestionBtn.style.display = 'none';
+                        quizOptions.forEach(opt => opt.classList.remove('selected'));
+                    } else {
+                        // Mostrar resultado
+                        showQuizResult();
+                    }
+                }
+            });
+            
+            function showQuizResult() {
+                // Lógica simples para determinar o estilo baseado nas respostas
+                const styleCount = {};
+                userAnswers.forEach(answer => {
+                    styleCount[answer] = (styleCount[answer] || 0) + 1;
+                });
+                
+                let maxCount = 0;
+                let resultStyle = 'realismo'; // padrão
+                
+                for (const style in styleCount) {
+                    if (styleCount[style] > maxCount) {
+                        maxCount = styleCount[style];
+                        resultStyle = style;
+                    }
+                }
+                
+                // Definir descrições para cada estilo
+                const styleDescriptions = {
+                    'realismo': 'Você aprecia detalhes e realismo nas artes. Tatuagens realistas capturam a essência de imagens com precisão fotográfica, perfeitas para quem busca retratos ou elementos naturais extremamente detalhados.',
+                    'aquarela': 'Seu estilo é livre e colorido! Tatuagens em estilo aquarela imitam pinturas com cores vibrantes e transições suaves, criando peças únicas e cheias de vida.',
+                    'oldschool': 'Você tem um gosto clássico! O estilo Old School é caracterizado por linhas grossas e cores sólidas, com motivos tradicionais como âncoras, rosas e andorinhas.',
+                    'minimalista': 'Menos é mais para você! Tatuagens minimalistas usam linhas simples e formas limpas para criar peças discretas e elegantes.',
+                    'geometrico': 'Você gosta de padrões e simetria! Tatuagens geométricas combinam formas precisas e designs abstratos para criar peças visualmente impactantes.',
+                    'blackwork': 'Você prefere o poder do preto! Blackwork utiliza apenas tinta preta para criar contrastes fortes e designs marcantes.',
+                    'tribal': 'Você se conecta com raízes culturais! Tatuagens tribais têm origens ancestrais e usam padrões complexos com significados profundos.',
+                    'pontilhismo': 'Você aprecia detalhes minuciosos! O pontilhismo cria imagens através de incontáveis pontos, resultando em peças únicas com efeitos de luz e sombra impressionantes.'
+                };
+                
+                // Sugestão de artista
+                const artistSuggestions = {
+                    'realismo': 'Marcos Silva - Especialista em Realismo',
+                    'aquarela': 'Ana Costa - Especialista em Aquarela',
+                    'oldschool': 'Ricardo Oliveira - Especialista em Old School',
+                    'minimalista': 'Camila Fernandes - Especialista em Minimalismo',
+                    'geometrico': 'Lucas Mendes - Especialista em Geometria',
+                    'blackwork': 'Thiago Rocha - Especialista em Blackwork',
+                    'tribal': 'Carlos Santos - Especialista em Tribal',
+                    'pontilhismo': 'Fernanda Lima - Especialista em Pontilhismo'
+                };
+                
+                document.getElementById('resultStyle').textContent = getStyleName(resultStyle);
+                document.getElementById('resultDescription').textContent = styleDescriptions[resultStyle];
+                document.getElementById('artistSuggestion').innerHTML = `<strong>Artista recomendado:</strong> ${artistSuggestions[resultStyle]}`;
+                
+                document.querySelector('.quiz-container').style.paddingBottom = '30px';
+                quizResult.style.display = 'block';
+                nextQuestionBtn.style.display = 'none';
+            }
+            
+            function getStyleName(styleKey) {
+                const styleNames = {
+                    'realismo': 'Realismo',
+                    'aquarela': 'Aquarela',
+                    'oldschool': 'Old School',
+                    'minimalista': 'Minimalista',
+                    'geometrico': 'Geométrico',
+                    'blackwork': 'Blackwork',
+                    'tribal': 'Tribal',
+                    'pontilhismo': 'Pontilhismo'
+                };
+                return styleNames[styleKey];
+            }
+            
+            restartQuizBtn.addEventListener('click', function() {
+                userAnswers = [];
+                currentQuestion = 1;
+                quizResult.style.display = 'none';
+                
+                for (let i = 1; i <= 3; i++) {
+                    document.getElementById(`question${i}`).style.display = i === 1 ? 'block' : 'none';
+                }
+                
+                quizOptions.forEach(opt => opt.classList.remove('selected'));
+                nextQuestionBtn.style.display = 'none';
+            });
+            
+            // Modal de artista
+            const artistCards = document.querySelectorAll('.artist-card, .artist-detail');
+            const artistModal = document.getElementById('artistModal');
+            const closeModal = document.querySelector('.close-modal');
+            
+            artistCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const artistId = this.getAttribute('data-artist-id') || this.getAttribute('data-artist');
+                    // Aqui você pode buscar os dados do artista via AJAX ou usar dados pré-definidos
+                    showArtistModal(artistId);
+                });
+            });
+            
+            function showArtistModal(artistId) {
+                // Simulação de dados do artista - na prática, você buscaria isso do seu backend
+                const artists = {
+                    '1': {
+                        name: 'Marcos Silva',
+                        specialty: 'Realismo',
+                        experience: '10 anos',
+                        bio: 'Especializado em tatuagens realistas, Marcos transforma imagens em verdadeiras obras de arte na pele. Com formação em Belas Artes, seu trabalho é reconhecido internacionalmente.',
+                        portfolio: [
+                            'https://source.unsplash.com/random/300x300/?realistic+tattoo,1',
+                            'https://source.unsplash.com/random/300x300/?realistic+tattoo,2',
+                            'https://source.unsplash.com/random/300x300/?realistic+tattoo,3'
+                        ]
+                    },
+                    '2': {
+                        name: 'Ana Costa',
+                        specialty: 'Aquarela',
+                        experience: '7 anos',
+                        bio: 'Ana é referência em tatuagens no estilo aquarela no Brasil. Seus trabalhos impressionam pelas cores vibrantes e pela técnica impecável que imita pinturas em aquarela.',
+                        portfolio: [
+                            'https://source.unsplash.com/random/300x300/?watercolor+tattoo,1',
+                            'https://source.unsplash.com/random/300x300/?watercolor+tattoo,2',
+                            'https://source.unsplash.com/random/300x300/?watercolor+tattoo,3'
+                        ]
+                    },
+                    '3': {
+                        name: 'Ricardo Oliveira',
+                        specialty: 'Old School',
+                        experience: '12 anos',
+                        bio: 'Mestre no estilo tradicional, Ricardo mantém viva a essência da tatuagem old school com suas linhas firmes e cores vivas. Já trabalhou em estúdios em várias partes do mundo.',
+                        portfolio: [
+                            'https://source.unsplash.com/random/300x300/?old+school+tattoo,1',
+                            'https://source.unsplash.com/random/300x300/?old+school+tattoo,2',
+                            'https://source.unsplash.com/random/300x300/?old+school+tattoo,3'
+                        ]
+                    }
+                };
+                
+                const artist = artists[artistId];
+                let portfolioHTML = '';
+                
+                artist.portfolio.forEach(img => {
+                    portfolioHTML += `<img src="${img}" alt="Trabalho de ${artist.name}" style="width:100%; margin-bottom:15px;">`;
+                });
+                
+                document.getElementById('modalContent').innerHTML = `
+                    <h2>${artist.name}</h2>
+                    <p><strong>Especialidade:</strong> ${artist.specialty}</p>
+                    <p><strong>Experiência:</strong> ${artist.experience}</p>
+                    <p>${artist.bio}</p>
+                    <h3>Portfólio</h3>
+                    <div class="artist-portfolio">${portfolioHTML}</div>
+                    <a href="#" class="btn" style="margin-top:20px;">Agendar com ${artist.name}</a>
+                `;
+                
+                artistModal.style.display = 'flex';
+            }
+            
+            closeModal.addEventListener('click', function() {
+                artistModal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target === artistModal) {
+                    artistModal.style.display = 'none';
+                }
+            });
+            
+            // CTA Flutuante
+            const floatingCta = document.getElementById('floatingCta');
+            floatingCta.addEventListener('click', function() {
+                window.location.href = '#';
+                // Aqui você pode abrir um formulário de agendamento ou modal
+                alert('Agende sua tatuagem agora mesmo!');
+            });
+            
+            // Mostrar/ocultar CTA flutuante ao rolar
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 500) {
+                    floatingCta.style.display = 'flex';
+                } else {
+                    floatingCta.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
