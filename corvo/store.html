@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Loja do Estúdio Raven - Produtos profissionais para tatuagem e cuidados pós-tatuagem">
+    <meta name="author" content="Estúdio Raven">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>Raven Tattoo - Loja</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/templatemo-eduwell-style.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+    <style>
+        /* Estilos da loja */
+        .product-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            margin-bottom: 30px;
+            background: #fff;
+        }
+        
+        .product-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .product-img {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+        
+        .product-item:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #8A2BE2;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .product-content {
+            padding: 20px;
+        }
+        
+        .product-category {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-size: 20px;
+            color: #8A2BE2;
+            font-weight: 700;
+        }
+        
+        .old-price {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #8A2BE2 0%, #FF6B6B 100%);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .add-to-cart:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+        
+        .filter-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .section-heading {
+            margin-bottom: 40px;
+        }
+
+        /* Alertas estilizados */
+        .cart-alert {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1100;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            transform: translateX(120%);
+            transition: transform 0.3s ease-out;
+            max-width: 350px;
+        }
+        
+        .cart-alert.show {
+            transform: translateX(0);
+        }
+        
+        .cart-alert.success {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .cart-alert.error {
+            background: #F44336;
+            color: white;
+        }
+        
+        .cart-alert i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .cart-alert .close-alert {
+            margin-left: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        
+        .cart-alert .close-alert:hover {
+            opacity: 1;
+        }
+
+        /* Header Styles */
+        .header-area {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: #1A1A2E !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .header-area.header-sticky {
+            background: rgba(26, 26, 46, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo img {
+            max-height: 50px;
+            transition: all 0.3s;
+        }
+        
+        .nav li a {
+            color: #fff !important;
+            font-weight: 500;
+            position: relative;
+            padding: 10px 15px !important;
+        }
+        
+        .nav li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 15px;
+            right: 15px;
+            height: 2px;
+            background: linear-gradient(135deg, #8A2BE2 0%, #FF6B6B 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav li a:hover:after,
+        .nav li a.active:after {
+            transform: scaleX(1);
+        }
+        
+        .badge {
+            font-size: 0.6rem;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #FF6B6B;
+        }
+    </style>
+</head>
+
+<body>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+                      <a href="index.html" class="logo">
+                          <img src="assets/images/templatemo-eduwell.png" alt="EduWell Template">
+                      </a>
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav">
+                          <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                          <li class="scroll-to-section"><a href="#services">Artistas</a></li>
+                          <li class="scroll-to-section"><a href="#courses">Galeria</a></li>
+                          <li class="has-sub">
+                              <a href="javascript:void(0)">Páginas</a>
+                              <ul class="sub-menu">
+                                  <li><a href="about-us.html">Nossa História</a></li>
+                            <li><a href="gallery.html">Galeria</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                              </ul>
+                          </li>
+                           <li><a href="store.html" class="active">Loja</a></li> 
+                    <li><a href="contact-us.html">Contato</a></li> 
+                    <li><a href="login.html"><i class="fa fa-user"></i></a></li>
+                    <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
+                      </ul>        
+                      <a class='menu-trigger'>
+                          <span>Menu</span>
+                      </a>
+                      <!-- ***** Menu End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <section class="page-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="header-text">
+            <h4>Produtos profissionais</h4>
+            <h1>Loja Raven</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="store">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading">
+            <h6>Produtos Selecionados</h6>
+            <h4>Equipamentos e <em>Cuidados</em></h4>
+          </div>
+        </div>
+        
+        <div class="col-lg-3">
+          <div class="filter-section">
+            <h5>Filtrar Produtos</h5>
+            <div class="form-group">
+              <label>Categorias</label>
+              <select class="form-control">
+                <option>Todas Categorias</option>
+                <option>Máquinas de Tatuar</option>
+                <option>Tintas</option>
+                <option>Cuidados Pós-Tatuagem</option>
+                <option>Acessórios</option>
+                <option>Roupas</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Faixa de Preço</label>
+              <input type="range" class="form-control-range" min="0" max="1000" step="50">
+              <div class="d-flex justify-content-between">
+                <span>R$0</span>
+                <span>R$1000</span>
+              </div>
+            </div>
+            <button class="btn btn-dark btn-block">Aplicar Filtros</button>
+          </div>
+        </div>
+        
+        <div class="col-lg-9">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="product-item">
+                <div class="product-img">
+                  <img src="assets/images/store/tattoo-machine.jpg" alt="Máquina de Tatuar">
+                  <span class="product-badge">Novidade</span>
+                </div>
+                <div class="product-content">
+                  <span class="product-category">Equipamentos</span>
+                  <h4 class="product-title">Máquina de Tatuar Raven Pro X</h4>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-alt"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">R$ 1.299,90</span>
+                    <span class="old-price">R$ 1.499,90</span>
+                  </div>
+                  <button class="add-to-cart" data-id="RT-MC001">Adicionar ao Carrinho</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+              <div class="product-item">
+                <div class="product-img">
+                  <img src="assets/images/store/ink-set.jpg" alt="Kit de Tintas">
+                </div>
+                <div class="product-content">
+                  <span class="product-category">Tintas</span>
+                  <h4 class="product-title">Kit Tintas Premium - 12 Cores</h4>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">R$ 349,90</span>
+                  </div>
+                  <button class="add-to-cart" data-id="RT-TK012">Adicionar ao Carrinho</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+              <div class="product-item">
+                <div class="product-img">
+                  <img src="assets/images/store/aftercare.jpg" alt="Creme Pós-Tatuagem">
+                  <span class="product-badge">Mais Vendido</span>
+                </div>
+                <div class="product-content">
+                  <span class="product-category">Cuidados</span>
+                  <h4 class="product-title">Creme Cicatrizante Raven Care</h4>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">R$ 59,90</span>
+                  </div>
+                  <button class="add-to-cart" data-id="RT-CR059">Adicionar ao Carrinho</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+              <div class="product-item">
+                <div class="product-img">
+                  <img src="assets/images/store/needles.jpg" alt="Agulhas">
+                </div>
+                <div class="product-content">
+                  <span class="product-category">Acessórios</span>
+                  <h4 class="product-title">Agulhas Descartáveis - 100 unidades</h4>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">R$ 89,90</span>
+                  </div>
+                  <button class="add-to-cart" data-id="RT-ND100">Adicionar ao Carrinho</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+              <div class="product-item">
+                <div class="product-img">
+                  <img src="assets/images/store/tshirt.jpg" alt="Camiseta">
+                  <span class="product-badge">Promoção</span>
+                </div>
+                <div class="product-content">
+                  <span class="product-category">Roupas</span>
+                  <h4 class="product-title">Camiseta Estúdio Raven - Edição Limitada</h4>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">R$ 79,90</span>
+                    <span class="old-price">R$ 99,90</span>
+                  </div>
+                  <button class="add-to-cart" data-id="RT-TS079">Adicionar ao Carrinho</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+              <div class="product-item">
+                <div class="product-img">
+                  <img src="assets/images/store/power-supply.jpg" alt="Fonte de Alimentação">
+                </div>
+                <div class="product-content">
+                  <span class="product-category">Equipamentos</span>
+                  <h4 class="product-title">Fonte de Alimentação Digital</h4>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">R$ 429,90</span>
+                  </div>
+                  <button class="add-to-cart" data-id="RT-PS429">Adicionar ao Carrinho</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-lg-12">
+              <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                  </li>
+                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Próxima</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+          <div class="section-heading">
+            <h6>Ofertas Exclusivas</h6>
+            <h4>Assine Nossa <em>Newsletter</em></h4>
+          </div>
+        </div>
+        <div class="col-lg-8 offset-lg-2">
+          <form id="newsletter" action="" method="post">
+            <div class="row">
+              <div class="col-lg-8">
+                <fieldset>
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Seu Email" required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-4">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="main-gradient-button">Assinar</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-us our-office">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="left-info">
+            <div class="section-heading">
+              <h6>Informações</h6>
+              <h4>Entre em <em>Contato</em></h4>
+            </div>
+            <p>Tem dúvidas sobre nossos produtos? Nossa equipe está pronta para ajudar com qualquer questão sobre equipamentos, tintas ou cuidados pós-tatuagem.</p>
+            <ul>
+              <li><i class="fa fa-phone"></i> (11) 98765-4321</li>
+              <li><i class="fa fa-envelope"></i> loja@estudioraven.com</li>
+              <li><i class="fa fa-map-marker"></i> Rua das Tatuagens, 123 - São Paulo/SP</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div id="video">
+            <div class="thumb">
+              <img src="assets/images/store-banner.jpg" alt="Visite nossa loja física">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <ul class="social-icons">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fa fa-whatsapp"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-lg-12">
+          <p class="copyright">Copyright © 2023 Estúdio Raven. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/lightbox.js"></script>
+    <script src="assets/js/tabs.js"></script>
+    <script src="assets/js/video.js"></script>
+    <script src="assets/js/slick-slider.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script>
+        // Dados dos produtos (deve ser o mesmo que no carrinho)
+        const products = {
+            'RT-MC001': {
+                id: 'RT-MC001',
+                name: 'Máquina de Tatuar Raven Pro X',
+                price: 1299.90,
+                image: 'assets/images/store/tattoo-machine.jpg'
+            },
+            'RT-TK012': {
+                id: 'RT-TK012',
+                name: 'Kit Tintas Premium - 12 Cores',
+                price: 349.90,
+                image: 'assets/images/store/ink-set.jpg'
+            },
+            'RT-CR059': {
+                id: 'RT-CR059',
+                name: 'Creme Cicatrizante Raven Care',
+                price: 59.90,
+                image: 'assets/images/store/aftercare.jpg'
+            },
+            'RT-ND100': {
+                id: 'RT-ND100',
+                name: 'Agulhas Descartáveis - 100 unidades',
+                price: 89.90,
+                image: 'assets/images/store/needles.jpg'
+            },
+            'RT-TS079': {
+                id: 'RT-TS079',
+                name: 'Camiseta Estúdio Raven - Edição Limitada',
+                price: 79.90,
+                image: 'assets/images/store/tshirt.jpg'
+            },
+            'RT-PS429': {
+                id: 'RT-PS429',
+                name: 'Fonte de Alimentação Digital',
+                price: 429.90,
+                image: 'assets/images/store/power-supply.jpg'
+            }
+        };
+
+        // Função para mostrar alerta
+        function showAlert(message, type) {
+            // Remove alertas anteriores
+            $('.cart-alert').remove();
+            
+            const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+            const $alert = $(`
+                <div class="cart-alert ${type}">
+                    <i class="fas ${icon}"></i>
+                    <span>${message}</span>
+                    <button class="close-alert">&times;</button>
+                </div>
+            `);
+            
+            $('body').append($alert);
+            
+            // Força o reflow para ativar a transição
+            setTimeout(() => {
+                $alert.addClass('show');
+            }, 10);
+            
+            // Fechar ao clicar no botão
+            $alert.find('.close-alert').click(function() {
+                hideAlert($alert);
+            });
+            
+            // Fechar automaticamente após 3 segundos
+            setTimeout(() => {
+                hideAlert($alert);
+            }, 3000);
+        }
+
+        // Esconder alerta com animação
+        function hideAlert($alert) {
+            $alert.removeClass('show');
+            setTimeout(() => {
+                $alert.remove();
+            }, 300);
+        }
+
+        // Função para adicionar ao carrinho
+        function addToCart(productId) {
+            // Recupera o carrinho do localStorage ou cria um novo
+            let cart = JSON.parse(localStorage.getItem('cart')) || {
+                items: [],
+                coupon: null,
+                discount: 0
+            };
+
+            // Verifica se o produto já está no carrinho
+            const existingItem = cart.items.find(item => item.id === productId);
+
+            if (existingItem) {
+                // Incrementa a quantidade se já existir
+                existingItem.quantity += 1;
+            } else {
+                // Adiciona novo item ao carrinho
+                cart.items.push({
+                    id: productId,
+                    quantity: 1
+                });
+            }
+
+            // Salva no localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Atualiza o contador do carrinho
+            updateCartCounter();
+
+            // Mostra mensagem de sucesso
+            showAlert(`${products[productId].name} adicionado ao carrinho!`, 'success');
+        }
+
+        // Atualiza o contador do carrinho no header
+        function updateCartCounter() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || { items: [] };
+            const totalItems = cart.items.reduce((total, item) => total + item.quantity, 0);
+            $('.cart-icon .badge').text(totalItems);
+        }
+
+        // Evento de clique para adicionar ao carrinho
+        $(document).on('click', '.add-to-cart', function() {
+            const productId = $(this).data('id');
+            addToCart(productId);
+        });
+
+        // Atualiza o contador ao carregar a página
+        $(document).ready(function() {
+            updateCartCounter();
+        });
+    </script>
+</body>
+</html>
